@@ -1,0 +1,94 @@
+NETFLIX BIRTHDAY TEMPLATE — CUSTOM TEMPLATE LICENSE
+
+Copyright (c) 2024. All rights reserved.
+
+DEFINITIONS
+
+"Template" refers to the Netflix Birthday personalised website template, including all source code, design systems, component architecture, animation logic, documentation, and structural files contained in this repository.
+
+"You" or "Licensee" refers to the individual who has obtained this Template for personal use.
+
+"Personalised Version" refers to a deployment of this Template where You have replaced placeholder content (names, dates, photos, messages, music) with Your own personal content.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+GRANT OF RIGHTS
+
+Subject to the terms and conditions of this License, the copyright holder grants You a limited, non-exclusive, non-transferable, non-sublicensable license to:
+
+1. USE the Template to create one (1) Personalised Version for personal, non-commercial purposes.
+
+2. MODIFY the content of the Template, including but not limited to: names, dates, photographs, videos, text messages, audio files, colour values, and font selections.
+
+3. DEPLOY Your Personalised Version on a publicly accessible hosting platform (such as Vercel, Netlify, or similar) for the purpose of gifting it to a specific individual.
+
+4. SHARE the URL of Your deployed Personalised Version with the intended recipient.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+RESTRICTIONS
+
+You are expressly prohibited from:
+
+1. CLAIMING OWNERSHIP — You may not represent, state, or imply that You created, designed, or developed the Template. The structural code, component architecture, design system, and animation logic remain the intellectual property of the original author.
+
+2. REDISTRIBUTION — You may not copy, distribute, publish, upload, post, transmit, or sublicense the Template source code, in whole or in part, to any third party, whether modified or unmodified.
+
+3. RESALE — You may not sell, rent, lease, lend, or otherwise commercially exploit the Template or any portion thereof.
+
+4. REPACKAGING — You may not repackage this Template as your own template, boilerplate, starter kit, or similar product, whether free or paid.
+
+5. REMOVAL OF ATTRIBUTION — You may not remove, alter, or obscure any copyright notices, license text, or attribution statements present in the Template source code or documentation.
+
+6. MULTIPLE DEPLOYMENTS — This license grants rights for one (1) Personalised Version. Deploying the Template for multiple recipients or multiple occasions requires separate permission.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+THIRD-PARTY COMPONENTS
+
+This Template uses open-source libraries (Next.js, Framer Motion, GSAP, Tailwind CSS, Howler.js, etc.) which are subject to their own respective licenses. This License governs only the original Template code and does not supersede the licenses of those dependencies.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+MEDIA AND CONTENT
+
+You are solely responsible for ensuring that any photographs, videos, audio recordings, and other media You add to Your Personalised Version do not infringe upon the intellectual property rights, privacy rights, or other rights of any third party.
+
+This License does not grant You any rights to use third-party copyrighted material (including song lyrics, copyrighted music, brand logos, or copyrighted photographs) in Your Personalised Version.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+PRIVACY
+
+You are responsible for ensuring that Your use of any personal data, photographs, or private information of individuals in Your Personalised Version complies with applicable privacy laws and that you have obtained the necessary consent from those individuals.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+DISCLAIMER OF WARRANTIES
+
+THE TEMPLATE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. THE AUTHOR MAKES NO WARRANTY THAT THE TEMPLATE WILL MEET YOUR REQUIREMENTS OR THAT OPERATION WILL BE UNINTERRUPTED OR ERROR-FREE.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS TEMPLATE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+TERMINATION
+
+This License is effective until terminated. Your rights under this License terminate automatically and without notice if You breach any of its terms and conditions. Upon termination, You must destroy all copies of the Template source code in Your possession.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+ENTIRE AGREEMENT
+
+This License constitutes the entire agreement between You and the copyright holder with respect to the Template and supersedes all prior agreements, understandings, negotiations, and discussions.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+SUMMARY (this is not a legal document — see full terms above)
+
+✅ You CAN: Use it personally. Customise the content. Deploy your version. Share the link.
+❌ You CANNOT: Claim you made it. Sell it. Redistribute it. Use it for multiple projects.
