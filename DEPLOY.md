@@ -3,13 +3,15 @@
 ## Done
 - Private GitHub repo: https://github.com/LauhithN/netflix-birthday-site
 - Production build passes (`npm run build`)
+- Local production server verified at http://localhost:3000
+- Temporary public tunnel (while `npm run start` is running): https://odd-rabbits-kick.loca.lt
 
-## Vercel (one-time login required)
+## Vercel permanent host (one-time login)
 
 ```bash
 cd ~/Projects/netflix-birthday-site
 npx vercel login          # complete in browser
-npx vercel --yes --prod   # deploys and prints the URL
+npx vercel --yes --prod   # prints the permanent URL
 ```
 
 Optional env in Vercel project settings:
