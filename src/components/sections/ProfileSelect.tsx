@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { PROFILES, SITE_CONFIG } from "@/data/content";
-import { getBirthdayStatus, getDaysUntil, getAge } from "@/lib/birthday";
+import { PROFILES, SITE_CONFIG, PROFILE_STREAMING_BADGE } from "@/data/content";
+import { getBirthdayStatus, getAge } from "@/lib/birthday";
 import {
   profileContainerVariants,
   profileCardVariants,
@@ -126,9 +126,9 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
             </motion.div>
           )}
 
-          {status === "future" && (
+          {status !== "today" && status !== null && (
             <motion.div
-              className="mb-8 mx-4 max-w-xs text-center"
+              className="mb-8 mx-4 max-w-sm text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -138,19 +138,31 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
                 WebkitBackdropFilter: "blur(16px)",
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: "12px",
-                padding: "12px 20px",
+                padding: "14px 22px",
               }}
             >
               <p
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: 11,
-                  color: "rgba(255,255,255,0.25)",
-                  letterSpacing: "0.2em",
+                  color: "rgba(255,255,255,0.55)",
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
+                  marginBottom: 6,
                 }}
               >
-                🗓️ {getDaysUntil()} days until something special
+                {PROFILE_STREAMING_BADGE.headline}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: 12,
+                  color: "rgba(255,255,255,0.35)",
+                  fontStyle: "italic",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                {PROFILE_STREAMING_BADGE.subline}
               </p>
             </motion.div>
           )}
@@ -262,10 +274,6 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
           >
             Choose your profile to continue
           </motion.p>
-
-          <p className="absolute bottom-8 text-xs" style={{ color: "#333" }}>
-            Made with ♥ for {SITE_CONFIG.herName} · {new Date().getFullYear()}
-          </p>
         </motion.div>
       ) : (
         <motion.div

@@ -83,16 +83,6 @@ export default function RootLayout({
       <body className="bg-netflix-dark text-white antialiased overflow-x-hidden">
         <EasterEggs />
         {children}
-        
-        {/* Sticky Watermark */}
-        <a 
-          href="https://www.vedanshh.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-5 right-5 z-[9999] rounded-full bg-black/40 px-4 py-2 text-[10px] sm:text-xs font-medium text-white/60 backdrop-blur-md transition-all duration-300 hover:bg-black/70 hover:text-white shadow-xl border border-white/10 uppercase tracking-widest font-body flex items-center gap-2"
-        >
-          <span>Designed by Vedanshh.dev</span>
-        </a>
       </body>
     </html>
   );

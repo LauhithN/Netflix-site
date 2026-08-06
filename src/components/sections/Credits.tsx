@@ -3,11 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { CREDITS, SITE_CONFIG } from "@/data/content";
+import { CREDITS } from "@/data/content";
 import { fadeIn, staggerItem } from "@/lib/animations";
 
 export default function Credits() {
-  const currentYear = new Date().getFullYear();
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -71,32 +70,12 @@ export default function Credits() {
             <p className="whitespace-pre-line font-serif text-base italic leading-relaxed text-white/50">
               {CREDITS.finalMessage}
             </p>
-            <p className="mt-6 font-body text-xs uppercase tracking-widest text-white/15">
-              Made with{" "}
-              <button 
-                onClick={handleSecretNavigation}
-                className="transition-colors hover:text-white/30 cursor-default uppercase" 
-                title="Just for you"
-                aria-label="Secret link"
-              >
-                love
-              </button>{" "}
-              by {SITE_CONFIG.yourName} · {currentYear}
-            </p>
-            {/* Added standard credits block */}
-            <div className="mt-8 border-t border-white/5 pt-6 text-center">
-              <p className="font-body text-[10px] text-white/25 uppercase tracking-widest">
-                Designed and Developed by{" "}
-                <a 
-                  href="https://www.vedanshh.dev" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-white/40 hover:text-white/80 transition-colors duration-300"
-                >
-                  Vedanshh.dev
-                </a>
-              </p>
-            </div>
+            <button
+              onClick={handleSecretNavigation}
+              className="mt-6 block h-8 w-full cursor-default opacity-0"
+              title="Just for you"
+              aria-label="Secret link"
+            />
           </motion.div>
         </div>
       </section>

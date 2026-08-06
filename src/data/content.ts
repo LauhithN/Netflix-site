@@ -9,7 +9,7 @@
 export const SITE_CONFIG = {
   herName: "Her",
   yourName: "Lauhith",
-  birthdayDate: "2000-01-01",
+  birthdayDate: "2002-08-09",
   anniversaryDate: "2024-01-01",
   firstMetDate: "2023-01-01",
 
@@ -21,14 +21,19 @@ export const SITE_CONFIG = {
   introSoundUrl: "/audio/intro-sound.mp3",
 };
 
+/** Profile-select “Now Streaming” badge */
+export const PROFILE_STREAMING_BADGE = {
+  headline: "Now Streaming · 24 seasons of her",
+  subline: "8766 episodes and counting",
+};
+
 // ─── Profile Selection (Who's Watching) ─────────────────────────────────────
 export const PROFILES = [
   {
     id: "her",
     name: SITE_CONFIG.herName,
     emoji: "💖",
-    image:
-      "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54446_guqhlh.jpg",
+    image: "/images/profiles/her.jpg",
     color: "#E91E8C",
     hint: "This one is for you",
     isMain: true,
@@ -37,30 +42,9 @@ export const PROFILES = [
     id: "us",
     name: "Us",
     emoji: "💑",
-    image:
-      "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54447_pvunsi.jpg",
+    image: "/images/profiles/us.jpg",
     color: "#E50914",
     hint: "Our story",
-    isMain: false,
-  },
-  {
-    id: "memories",
-    name: "Memories",
-    emoji: "✨",
-    image:
-      "https://res.cloudinary.com/dadpljanb/image/upload/v1774541582/54448_m9lekh.jpg",
-    color: "#F5C518",
-    hint: "All the little moments",
-    isMain: false,
-  },
-  {
-    id: "me",
-    name: SITE_CONFIG.yourName,
-    emoji: "🎬",
-    image:
-      "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54451_ffgbza.jpg",
-    color: "#4FC3F7",
-    hint: "Made with love",
     isMain: false,
   },
 ];
