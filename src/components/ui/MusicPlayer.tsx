@@ -234,7 +234,10 @@ export default function MusicPlayer({
 
   return (
     <motion.div
-      className="fixed bottom-6 right-6 z-[70] transition-all duration-300 md:bottom-10 md:right-10"
+      className="fixed bottom-safe right-4 z-[70] transition-all duration-300 sm:right-6 md:bottom-10 md:right-10"
+      style={{
+        bottom: "max(1.25rem, calc(1rem + env(safe-area-inset-bottom, 0px)))",
+      }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2 }}

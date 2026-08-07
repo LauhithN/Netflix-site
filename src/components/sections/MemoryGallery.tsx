@@ -89,18 +89,18 @@ function MemoryRow({
   return (
     <div className="w-full" ref={rowRef}>
       {/* Row Header */}
-      <div className="mb-3 px-8 md:px-12">
+      <div className="mb-3 px-5 md:px-12">
         <AnimatedTitle
           text={row.title.toUpperCase()}
-          className="font-display text-2xl tracking-wide text-white md:text-3xl"
+          className="font-display text-xl tracking-wide text-white sm:text-2xl md:text-3xl"
         />
-        <p className="mt-1 font-body text-xs uppercase tracking-widest text-white/40">
+        <p className="mt-1 font-body text-[10px] uppercase tracking-widest text-white/40 sm:text-xs">
           {row.subtitle}
         </p>
       </div>
 
       {/* Scrolling Row */}
-      <div className="scroll-row flex gap-3 px-8 pb-4 md:px-12">
+      <div className="scroll-row flex gap-3 pb-4">
         {row.cards.map((card, idx) => (
           <div key={card.id} className="shrink-0 memory-card-wrap">
             <MemoryCard
@@ -135,7 +135,7 @@ function MemoryCard({
   const isVideo = card.image.match(/\.(mp4|webm|ogg)$/i) || card.image.includes("/video/");
   return (
     <motion.div
-      className="memory-card relative w-64 cursor-pointer overflow-hidden rounded-md bg-surface md:w-72 tv:w-80"
+      className="memory-card relative w-[15.5rem] cursor-pointer overflow-hidden rounded-md bg-surface sm:w-64 md:w-72 tv:w-80"
       style={{ aspectRatio: "16/9" }}
       animate={
         hovered

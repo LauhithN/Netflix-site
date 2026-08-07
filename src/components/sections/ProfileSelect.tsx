@@ -83,7 +83,7 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-intro flex flex-col items-center justify-center bg-netflix-dark px-4"
+          className="fixed inset-0 z-intro flex flex-col items-center justify-center bg-netflix-dark px-4 px-safe pb-safe pt-safe"
         >
           {status === "today" && (
             <motion.div

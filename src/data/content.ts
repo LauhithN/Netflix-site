@@ -51,10 +51,13 @@ export const PROFILES = [
 
 // ─── Hero Banner ────────────────────────────────────────────────────────────
 export const HERO = {
-  backgroundImageMobile:
-    "https://res.cloudinary.com/dadpljanb/image/upload/v1774541238/1774540830108_efcwyg.png",
-  backgroundImageDesktop:
-    "https://res.cloudinary.com/dadpljanb/image/upload/v1774541238/1774540798169_egyqbt.png",
+  backgroundImageMobile: "/images/hero/main.jpg",
+  backgroundImageDesktop: "/images/hero/main.jpg",
+  collage: [
+    "/images/hero/collage-1.jpg",
+    "/images/hero/collage-2.jpg",
+    "/images/hero/collage-3.jpg",
+  ],
   title: SITE_CONFIG.herName,
   description: "This is a world built just for you.",
   ctaPrimary: { label: "Watch Our Story", anchor: "#video" },
@@ -77,8 +80,7 @@ export const MEMORY_ROWS = [
         id: "pick-1",
         title: "Favourite Smile",
         date: "Always",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541582/54448_m9lekh.jpg",
+        image: "/images/profiles/favourite-smile.jpg",
         message: "This smile. This exact one. I replay it more than any movie.",
         tag: "Top Pick",
       },
@@ -86,8 +88,7 @@ export const MEMORY_ROWS = [
         id: "pick-2",
         title: "Soft Light",
         date: "Golden hour",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54464_gg2lrz.jpg",
+        image: "/images/profiles/soft-light.jpg",
         message: "You make ordinary light look cinematic.",
         tag: "Glow",
       },
@@ -163,8 +164,7 @@ export const MEMORY_ROWS = [
         id: "trip-1",
         title: "First Adventure",
         date: "Out there",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541585/54450_dcukuf.jpg",
+        image: "/images/profiles/adventure.jpg",
         message: "Wherever we go, you make it feel like home.",
         tag: "Trip",
       },
@@ -172,8 +172,7 @@ export const MEMORY_ROWS = [
         id: "trip-2",
         title: "City Lights",
         date: "Night walk",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541585/54459_gd3mw7.jpg",
+        image: "/images/profiles/city-lights.jpg",
         message: "Crowded streets, just us in the middle of them.",
         tag: "City",
       },
@@ -181,8 +180,7 @@ export const MEMORY_ROWS = [
         id: "trip-3",
         title: "Road Mode",
         date: "On the way",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541585/54463_pw7gfm.jpg",
+        image: "/images/profiles/road-mode.jpg",
         message: "Playlists, windows down, your laugh louder than the engine.",
         tag: "Drive",
       },
@@ -190,8 +188,7 @@ export const MEMORY_ROWS = [
         id: "trip-4",
         title: "Next Destination",
         date: "Soon",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541585/54452_ze7and.jpg",
+        image: "/images/profiles/next-destination.jpg",
         message: "Still writing the itinerary — starring you.",
         tag: "Soon",
       },
@@ -318,10 +315,10 @@ export const LOVE_LETTER = {
 // ─── Love Stats ─────────────────────────────────────────────────────────────
 export const LOVE_STATS = [
   { value: 365, suffix: "+", label: "Days Together", emoji: "🗓️" },
-  { value: 1000, suffix: "+", label: "Memories Shared", emoji: "🌍" },
+  { value: 100, suffix: "+", label: "Memories Shared", emoji: "🌍" },
   { value: 200, suffix: "+", label: "Photos of Us", emoji: "📸" },
   { value: 12, suffix: "", label: "Adventures", emoji: "✈️" },
-  { value: 99, suffix: "%", label: "Heart Taken", emoji: "💘" },
+  { value: 100, suffix: "%", label: "Heart Taken", emoji: "💘" },
   { value: 1, suffix: "", label: "Person for Me", emoji: "👑" },
 ];
 

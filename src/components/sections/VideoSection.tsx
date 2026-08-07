@@ -178,7 +178,7 @@ export default function VideoSection({ onInViewChange }: VideoSectionProps) {
       <div className="relative z-20 mx-auto w-full max-w-5xl px-0 md:px-8 pb-20">
         <div
           ref={containerRef}
-          className="group relative aspect-video w-full cursor-pointer bg-black overflow-hidden ring-1 ring-white/10 md:rounded-lg md:shadow-2xl"
+          className="group group/video relative aspect-video w-full cursor-pointer overflow-hidden bg-black ring-1 ring-white/10 md:rounded-lg md:shadow-2xl"
           onClick={handleSmartClick}
           onMouseEnter={() => setShowControls(true)}
           onMouseLeave={() => setShowControls(playing ? false : true)}
@@ -220,7 +220,7 @@ export default function VideoSection({ onInViewChange }: VideoSectionProps) {
           />
 
           <div
-            className={`absolute inset-x-0 bottom-0 flex flex-col justify-end px-4 pb-4 transition-opacity duration-300 md:px-6 md:pb-6 ${
+            className={`video-controls-bar absolute inset-x-0 bottom-0 flex flex-col justify-end px-4 pb-4 transition-opacity duration-300 md:px-6 md:pb-6 ${
               controlsVisible ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >

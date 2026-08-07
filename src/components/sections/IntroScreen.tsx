@@ -29,7 +29,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-black"
+      className="fixed inset-0 z-[100] flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-black px-safe pb-safe pt-safe"
       onClick={handleClick}
       animate={{ opacity: isZooming ? 0 : 1 }}
       transition={{ duration: 0.4, delay: 0.8 }}
@@ -67,7 +67,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-20 text-center font-body text-xs uppercase tracking-widest text-white/40 md:text-sm"
+          className="absolute bottom-[max(4rem,calc(3rem+env(safe-area-inset-bottom)))] text-center font-body text-xs uppercase tracking-widest text-white/40 md:text-sm"
         >
           Click to enter
         </motion.p>

@@ -1,5 +1,5 @@
 /**
- * Client-side device helpers for smart TV + phone hardening.
+ * Client-side device helpers for phone, laptop, and smart TV.
  */
 
 export function prefersReducedMotion(): boolean {
@@ -22,6 +22,12 @@ export function isSmartTV(): boolean {
     window.matchMedia("(pointer: coarse)").matches;
 
   return tvUa || largeScreen;
+}
+
+/** Phones / narrow viewports (includes iPhone 15 Pro Max landscape/portrait). */
+export function isMobileViewport(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 767px)").matches;
 }
 
 export function shouldSimplifyMotion(): boolean {

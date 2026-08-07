@@ -55,8 +55,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
   viewportFit: "cover",
   themeColor: "#141414",
+  colorScheme: "dark",
 };
 
 // ─── Root Layout ────────────────────────────────────────────────────────────
@@ -80,7 +82,7 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://res.cloudinary.com" />
       </head>
-      <body className="bg-netflix-dark text-white antialiased overflow-x-hidden">
+      <body className="bg-netflix-dark text-white antialiased overflow-x-hidden overscroll-none">
         <EasterEggs />
         {children}
       </body>
