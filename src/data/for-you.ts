@@ -66,7 +66,7 @@ export const FIFTY_REASONS = [
   "13. Your ridiculous jokes that somehow make me laugh harder than good ones.",
   "14. The fact that you sing completely out of tune in the car and own it.",
   "15. How fiercely independent you are, yet how willingly you share your world.",
-  "16. The way you drag me outside to look at the moon or a sunset.",
+  "16. The way you light up around dogs — a true dog lover at heart.",
   "17. Your kindness to strangers — it shows the gold in your heart.",
   "18. How you fit into spaces of my soul I didn't know were empty.",
   "19. The way you sleep — tangled in blankets, completely at peace.",
