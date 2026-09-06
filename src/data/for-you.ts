@@ -111,6 +111,7 @@ export const SECRET_LETTER = {
     `I've watched you grow, fight, triumph, and heal. With every day my respect for you deepens. Someone as extraordinary as you choosing me is the greatest honor of my life.`,
     `This page is hidden because these words aren't for the world. They are just for you — a quiet corner where I can remind you that you are my favourite person, my best friend, and the love of my life.`,
     `Happy Birthday, my beautiful ${SITE_CONFIG.herName}. You are my today, and you are all of my tomorrows.`,
+    `I love you infinity times all the universes.. ha ha !!! I win 💖😘💋❤️`,
   ],
   signoff: "Forever entirely yours,",
   signature: SITE_CONFIG.yourName,
