@@ -7,13 +7,13 @@
 
 // ─── Site Configuration ─────────────────────────────────────────────────────
 export const SITE_CONFIG = {
-  herName: "Her",
+  herName: "Bubu",
   yourName: "Lauhith",
   birthdayDate: "2002-08-09",
-  anniversaryDate: "2024-01-01",
+  anniversaryDate: "2024-04-09",
   firstMetDate: "2023-01-01",
 
-  siteTitle: "Her — A Love Story",
+  siteTitle: "Bubu — A Love Story",
   heroTagline: "Every frame of you is my favourite scene.",
   siteDescription: "A birthday surprise made just for you.",
   siteURL: "https://netflix-birthday-site.vercel.app",
@@ -23,7 +23,7 @@ export const SITE_CONFIG = {
 
 /** Profile-select “Now Streaming” badge */
 export const PROFILE_STREAMING_BADGE = {
-  headline: "Now Streaming · 24 seasons of her",
+  headline: "Now Streaming · 24 seasons of Bubu",
   subline: "8766 episodes and counting",
 };
 
@@ -73,7 +73,7 @@ export const HERO = {
 export const MEMORY_ROWS = [
   {
     id: "top-picks",
-    title: "Top Picks for Her",
+    title: "Top Picks for Bubu",
     subtitle: "The ones that still stop me mid-scroll",
     cards: [
       {
@@ -89,6 +89,7 @@ export const MEMORY_ROWS = [
         title: "Soft Light",
         date: "Golden hour",
         image: "/images/profiles/soft-light.jpg",
+        focus: "50% 55%",
         message: "You make ordinary light look cinematic.",
         tag: "Glow",
       },
@@ -96,8 +97,7 @@ export const MEMORY_ROWS = [
         id: "pick-3",
         title: "That Look",
         date: "Unfiltered",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54446_guqhlh.jpg",
+        image: "/images/that-look.jpg",
         message: "The look that makes the whole room quieter.",
         tag: "Favourite",
       },
@@ -105,8 +105,8 @@ export const MEMORY_ROWS = [
         id: "pick-4",
         title: "Main Character",
         date: "Every day",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54466_usqdbv.jpg",
+        image: "/images/main-character.jpg",
+        focus: "50% 45%",
         message: "If this were Netflix, you'd be the featured title.",
         tag: "Featured",
       },
@@ -121,8 +121,7 @@ export const MEMORY_ROWS = [
         id: "mem-1",
         title: "Quiet Joy",
         date: "A regular Tuesday",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541583/54454_yszfba.jpg",
+        image: "/images/quiet-joy.jpg",
         message: "Nothing special on paper. Everything special in person.",
         tag: "Memory",
       },
@@ -130,8 +129,8 @@ export const MEMORY_ROWS = [
         id: "mem-2",
         title: "Details",
         date: "Close up",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54449_sdp77a.jpg",
+        image: "/images/details.jpg",
+        focus: "50% 8%",
         message: "I notice you in the small things first.",
         tag: "Detail",
       },
@@ -139,8 +138,8 @@ export const MEMORY_ROWS = [
         id: "mem-3",
         title: "Wallpaper",
         date: "Saved forever",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541584/54455_tei2lm.jpg",
+        image: "/images/wallpaper.jpg",
+        focus: "50% 35%",
         message: "This one lives on my lock screen and in my head.",
         tag: "Keep",
       },
@@ -148,8 +147,8 @@ export const MEMORY_ROWS = [
         id: "mem-4",
         title: "Soft Night",
         date: "After dark",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541585/54467_uhifn8.jpg",
+        image: "/images/soft-night.jpg",
+        focus: "50% 15%",
         message: "Evenings with you feel like the credits never need to roll.",
         tag: "Night",
       },
@@ -203,8 +202,8 @@ export const MEMORY_ROWS = [
         id: "us-1",
         title: "Together",
         date: "Best set",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54447_pvunsi.jpg",
+        image: "/images/together.jpg",
+        focus: "50% 45%",
         message: "Matching energy. Matching chaos. Matching hearts.",
         tag: "Us",
       },
@@ -212,8 +211,8 @@ export const MEMORY_ROWS = [
         id: "us-2",
         title: "Happy Time",
         date: "Captured",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54451_ffgbza.jpg",
+        image: "/images/happy-time.jpg",
+        focus: "50% 6%",
         message: "Proof that the best scenes are unrehearsed.",
         tag: "Joy",
       },
@@ -221,8 +220,8 @@ export const MEMORY_ROWS = [
         id: "us-3",
         title: "Side by Side",
         date: "Always",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54462_smfvao.jpg",
+        image: "/images/side-by-side.jpg",
+        focus: "50% 40%",
         message: "My favourite co-star in every timeline.",
         tag: "Pair",
       },
@@ -230,8 +229,8 @@ export const MEMORY_ROWS = [
         id: "us-4",
         title: "Only You",
         date: "End scene",
-        image:
-          "https://res.cloudinary.com/dadpljanb/image/upload/v1774541586/54453_yilznv.jpg",
+        image: "/images/only-you.jpg",
+        focus: "50% 40%",
         message: "Every version of you — I choose them all.",
         tag: "Forever",
       },

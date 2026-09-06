@@ -8,7 +8,6 @@ import ProfileSelect from "@/components/sections/ProfileSelect";
 import HeroBanner from "@/components/sections/HeroBanner";
 import Navbar from "@/components/layout/Navbar";
 import FloatingPetals from "@/components/ui/FloatingPetals";
-import MusicPlayer from "@/components/ui/MusicPlayer";
 import ProgressBar from "@/components/ui/ProgressBar";
 import dynamic from "next/dynamic";
 import { shouldSimplifyMotion } from "@/lib/device";
@@ -32,9 +31,6 @@ type AppState = "intro" | "profile" | "main";
 export default function HomePage() {
   const [appState, setAppState] = useState<AppState>("intro");
   const [isMounted, setIsMounted] = useState(false);
-  const [musicOn, setMusicOn] = useState(false);
-  const [videoInView, setVideoInView] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [showPetals, setShowPetals] = useState(false);
 
   // Hydration guard
@@ -62,16 +58,7 @@ export default function HomePage() {
       {showPetals && <FloatingPetals />}
 
       {/* Persistent UI — only in main state */}
-      {appState === "main" && (
-        <>
-          <ProgressBar />
-          <MusicPlayer
-            isPlaying={musicOn}
-            onToggle={() => setMusicOn((prev) => !prev)}
-            isVideoDucking={(videoInView || lightboxOpen) && musicOn}
-          />
-        </>
-      )}
+      {appState === "main" && <ProgressBar />}
 
       {/* ── Intro Screen ────────────────────────────────────────────── */}
       <AnimatePresence mode="wait">
@@ -103,15 +90,12 @@ export default function HomePage() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative bg-netflix-dark min-h-screen"
           >
-            <Navbar
-              musicOn={musicOn}
-              onMusicToggle={() => setMusicOn((prev) => !prev)}
-            />
+            <Navbar />
             <HeroBanner />
-            <MemoryGallery onLightboxToggle={setLightboxOpen} />
+            <MemoryGallery />
             <LoveStats />
             <Timeline />
-            <VideoSection onInViewChange={setVideoInView} />
+            <VideoSection />
             <LoveLetter />
             <BirthdayFinale />
             <Credits />

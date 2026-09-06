@@ -4,12 +4,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/data/content";
 import { navbarVariants } from "@/lib/animations";
-import { VolumeX } from "lucide-react";
-
-interface NavbarProps {
-  musicOn: boolean;
-  onMusicToggle: () => void;
-}
 
 const NAV_LINKS = [
   { label: "Home", href: "#hero" },
@@ -18,7 +12,7 @@ const NAV_LINKS = [
   { label: "The Letter", href: "#letter" },
 ];
 
-export default function Navbar({ musicOn, onMusicToggle }: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -70,30 +64,6 @@ export default function Navbar({ musicOn, onMusicToggle }: NavbarProps) {
           </div>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <motion.button
-              onClick={onMusicToggle}
-              whileHover={{
-                scale: 1.08,
-                borderColor: "rgba(229,9,20,0.6)",
-              }}
-              className="tap-target flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-sm transition-colors"
-              aria-label={musicOn ? "Mute music" : "Play music"}
-            >
-              {musicOn ? (
-                <span className="flex h-4 items-end gap-[2px]">
-                  {[0, 1, 2].map((i) => (
-                    <span
-                      key={i}
-                      className="eq-bar eq-bar--active"
-                      style={{ animationDelay: `${i * 0.13}s` }}
-                    />
-                  ))}
-                </span>
-              ) : (
-                <VolumeX size={16} className="text-white/50" />
-              )}
-            </motion.button>
-
             <motion.a
               href="#letter"
               whileHover={{

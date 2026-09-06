@@ -133,6 +133,8 @@ function MemoryCard({
 }) {
   const [hovered, setHovered] = useState(false);
   const isVideo = card.image.match(/\.(mp4|webm|ogg)$/i) || card.image.includes("/video/");
+  // Where the cover-crop centers vertically, so faces stay inside the 16:9 preview
+  const focus = (card as { focus?: string }).focus ?? "50% 30%";
   return (
     <motion.div
       className="memory-card relative w-[15.5rem] cursor-pointer overflow-hidden rounded-md bg-surface sm:w-64 md:w-72 tv:w-80"
@@ -155,6 +157,7 @@ function MemoryCard({
         <video
           src={card.image}
           className="absolute inset-0 z-0 h-full w-full object-cover"
+          style={{ objectPosition: focus }}
           autoPlay
           muted
           loop
@@ -166,6 +169,7 @@ function MemoryCard({
           alt={card.title}
           fill
           className="object-cover"
+          style={{ objectPosition: focus }}
           wrapperClassName="absolute inset-0 z-0"
           sizes="(max-width: 768px) 14rem, 16rem"
         />
