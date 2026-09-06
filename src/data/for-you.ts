@@ -53,7 +53,7 @@ export const SECRET_GALLERY = [
 export const FIFTY_REASONS = [
   "1. The way your eyes light up when you talk about something you're passionate about.",
   "2. How you somehow know exactly when I need a hug without me saying a word.",
-  "3. The tiny nose scrunch you do when you're concentrating.",
+  "3. The small burps you make only around me — comfort in its purest form.",
   "4. Your laugh — the loud, unguarded one that makes my entire day brighter.",
   "5. How safe I feel just sitting in silence next to you.",
   "6. The way you care for your friends with fierce loyalty.",
