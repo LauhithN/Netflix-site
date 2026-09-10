@@ -11,7 +11,7 @@ import {
   fadeIn,
 } from "@/lib/animations";
 import { sleep } from "@/lib/utils";
-import { isSmartTV } from "@/lib/device";
+import { isSmartTV, prefersReducedMotion } from "@/lib/device";
 
 interface ProfileSelectProps {
   onSelect: () => void;
@@ -36,7 +36,7 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
 
     const profile = PROFILES.find((p) => p.id === profileId);
 
-    if (profile?.isMain && !tvMode) {
+    if (profile?.isMain && !tvMode && !prefersReducedMotion()) {
       const confetti = (await import("canvas-confetti")).default;
 
       confetti({
@@ -87,40 +87,18 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
         >
           {status === "today" && (
             <motion.div
-              className="mb-10 mx-4 max-w-sm text-center"
+              className="mx-4 mb-10 max-w-sm rounded-2xl border border-netflix-red/25 bg-netflix-red/[0.08] px-6 py-5 text-center backdrop-blur-xl"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-              style={{
-                background: "rgba(229, 9, 20, 0.08)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(229, 9, 20, 0.25)",
-                borderRadius: "16px",
-                padding: "20px 24px",
-              }}
             >
-              <p style={{ fontSize: 32, marginBottom: 8 }}>🎂</p>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(18px, 5vw, 26px)",
-                  color: "#ffffff",
-                  letterSpacing: "0.08em",
-                  marginBottom: 6,
-                }}
-              >
+              <p className="mb-2 text-3xl" aria-hidden="true">
+                🎂
+              </p>
+              <p className="mb-1.5 font-display text-[clamp(18px,5vw,26px)] tracking-[0.08em] text-white">
                 HAPPY BIRTHDAY, {SITE_CONFIG.herName.toUpperCase()}!
               </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: 13,
-                  color: "rgba(255,255,255,0.5)",
-                  fontStyle: "italic",
-                  lineHeight: 1.6,
-                }}
-              >
+              <p className="font-serif text-[13px] italic leading-relaxed text-white/65">
                 You&apos;re {getAge()} today and more loved than ever.
               </p>
             </motion.div>
@@ -128,40 +106,15 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
 
           {status !== "today" && status !== null && (
             <motion.div
-              className="mb-8 mx-4 max-w-sm text-center"
+              className="mx-4 mb-8 max-w-sm rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-center backdrop-blur-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: "12px",
-                padding: "14px 22px",
-              }}
             >
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 11,
-                  color: "rgba(255,255,255,0.55)",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  marginBottom: 6,
-                }}
-              >
+              <p className="mb-1.5 font-body text-[11px] uppercase tracking-[0.18em] text-white/65">
                 {PROFILE_STREAMING_BADGE.headline}
               </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: 12,
-                  color: "rgba(255,255,255,0.35)",
-                  fontStyle: "italic",
-                  letterSpacing: "0.04em",
-                }}
-              >
+              <p className="font-serif text-xs italic tracking-[0.04em] text-white/50">
                 {PROFILE_STREAMING_BADGE.subline}
               </p>
             </motion.div>
@@ -192,10 +145,9 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
                   variants={profileCardVariants}
                   onClick={() => handleSelect(profile.id)}
                   disabled={!!selected}
-                  className="group flex min-h-[44px] flex-col items-center gap-3 focus:outline-none focus-visible:ring-4 focus-visible:ring-netflix-red/60 focus-visible:ring-offset-4 focus-visible:ring-offset-netflix-dark rounded-md"
+                  className="group flex min-h-[44px] flex-col items-center gap-3 rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-netflix-red/60 focus-visible:ring-offset-4 focus-visible:ring-offset-netflix-dark"
                   whileHover={!selected ? { scale: 1.05 } : undefined}
                   whileTap={!selected ? { scale: 0.97 } : undefined}
-                  tabIndex={0}
                 >
                   <motion.div
                     className={`relative flex items-center justify-center overflow-hidden rounded-md ${avatarSize}`}
@@ -239,7 +191,7 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
                   <motion.span
                     className={`font-medium uppercase tracking-widest ${tvMode ? "text-base md:text-lg" : "text-sm"}`}
                     animate={{
-                      color: isSelected ? profile.color : "rgba(255,255,255,0.5)",
+                      color: isSelected ? profile.color : "rgba(255,255,255,0.65)",
                     }}
                     transition={{ duration: 0.3 }}
                   >
@@ -270,7 +222,7 @@ export default function ProfileSelect({ onSelect }: ProfileSelectProps) {
             initial="hidden"
             animate="visible"
             transition={{ delay: 1 }}
-            className="mt-16 text-xs uppercase tracking-widest text-white/20 md:text-sm"
+            className="mt-16 text-xs uppercase tracking-widest text-white/45 md:text-sm"
           >
             Choose your profile to continue
           </motion.p>

@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { LOVE_LETTER } from "@/data/content";
 import { fadeInUp, fadeIn } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/device";
 
 export default function LoveLetter() {
+  const router = useRouter();
   const [heartClicks, setHeartClicks] = useState(0);
   const [secretRevealed, setSecretRevealed] = useState(false);
 
@@ -17,6 +20,7 @@ export default function LoveLetter() {
 
     if (next >= 5) {
       setSecretRevealed(true);
+      if (prefersReducedMotion()) return;
       const confetti = (await import("canvas-confetti")).default;
       confetti({
         particleCount: 150,
@@ -30,7 +34,7 @@ export default function LoveLetter() {
   return (
     <section
       id="letter"
-      className="relative overflow-hidden bg-netflix-dark px-8 py-28 md:px-16"
+      className="relative overflow-hidden bg-netflix-dark px-6 py-28 sm:px-8 md:px-16"
     >
       {/* ── Background Glow ──────────────────────────────────────── */}
       <div
@@ -59,7 +63,7 @@ export default function LoveLetter() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-8 font-serif text-lg italic text-white/70"
+          className="mb-8 font-serif text-lg italic text-white/80"
         >
           {LOVE_LETTER.salutation}
         </motion.p>
@@ -72,7 +76,7 @@ export default function LoveLetter() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="font-serif text-lg leading-relaxed text-white/80 md:text-xl"
+              className="font-serif text-lg leading-relaxed text-white/85 md:text-xl"
             >
               {p}
             </motion.p>
@@ -86,7 +90,7 @@ export default function LoveLetter() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-2 font-serif text-lg italic text-white/60"
+            className="mb-2 font-serif text-lg italic text-white/70"
           >
             {LOVE_LETTER.closing}
           </motion.p>
@@ -108,12 +112,13 @@ export default function LoveLetter() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-4 font-body text-sm italic text-white/30"
+            className="mb-4 font-body text-sm italic text-white/55"
           >
             {LOVE_LETTER.postscript}
           </motion.p>
 
           <motion.button
+            type="button"
             onClick={handleHeartClick}
             disabled={secretRevealed}
             animate={
@@ -122,7 +127,7 @@ export default function LoveLetter() {
                 : { scale: 1 }
             }
             transition={{ duration: 0.3 }}
-            className="text-4xl outline-none"
+            className="rounded-full p-2 text-4xl leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-glow/70 focus-visible:ring-offset-4 focus-visible:ring-offset-netflix-dark disabled:cursor-default"
             aria-label="Unlock secret message"
           >
             {heartClicks >= 5 ? "💖" : "🤍"}
@@ -135,7 +140,8 @@ export default function LoveLetter() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="mx-auto mt-2 text-xs italic text-rose-glow/60"
+                className="mx-auto mt-2 text-xs italic text-rose-glow/80"
+                aria-live="polite"
               >
                 {5 - heartClicks} more...
               </motion.p>
@@ -156,16 +162,19 @@ export default function LoveLetter() {
                 }}
                 className="mx-auto mt-6 max-w-md rounded-lg border border-rose-glow/30 bg-rose-glow/5 p-6 shadow-[0_0_30px_rgba(233,30,140,0.1)]"
               >
-                <div className="mb-3 text-2xl">🔮</div>
-                <p className="mb-6 font-serif italic font-light leading-relaxed text-rose-glow/90">
+                <div className="mb-3 text-2xl" aria-hidden="true">
+                  🔮
+                </div>
+                <p className="mb-6 font-serif font-light italic leading-relaxed text-rose-glow/90">
                   &quot;In any lifetime, in any universe, I would find you and
                   choose you again. You are my greatest adventure.&quot;
                 </p>
                 <motion.button
+                  type="button"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => window.location.href = "/for-you"}
-                  className="rounded-full bg-rose-glow/20 px-6 py-2 text-xs font-bold uppercase tracking-widest text-rose-glow border border-rose-glow/30 transition-all hover:bg-rose-glow/40 shadow-lg"
+                  onClick={() => router.push("/for-you")}
+                  className="rounded-full border border-rose-glow/30 bg-rose-glow/20 px-6 py-3 text-xs font-bold uppercase tracking-widest text-rose-glow shadow-lg transition-colors hover:bg-rose-glow/40"
                 >
                   Enter Your Secret Space
                 </motion.button>

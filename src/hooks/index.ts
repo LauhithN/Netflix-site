@@ -229,4 +229,26 @@ export function useDeviceMotion(
   }, [threshold, stableCallback]);
 }
 
+// ─── useCoarsePointer ───────────────────────────────────────────────────────
+/**
+ * True on touch-first devices (phones, tablets, TV remotes) where hover
+ * states don't exist. Updates if the primary input changes.
+ */
+export function useCoarsePointer(): boolean {
+  const [coarse, setCoarse] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const query = window.matchMedia("(hover: none), (pointer: coarse)");
+    const update = () => setCoarse(query.matches);
+    update();
+
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return coarse;
+}
+
 export { useLiveStats } from "./useLiveStats";

@@ -25,9 +25,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-bebas)"],
-        body: ["var(--font-inter)"],
-        serif: ["var(--font-playfair)"],
+        display: ["var(--font-bebas)", "Impact", "Arial Narrow", "sans-serif"],
+        body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
       },
       backgroundImage: {
         "hero-gradient":
@@ -36,6 +36,15 @@ const config: Config = {
           "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
         "section-fade-up":
           "linear-gradient(to top, #141414, transparent)",
+      },
+      keyframes: {
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite",
       },
       zIndex: {
         intro: "100",

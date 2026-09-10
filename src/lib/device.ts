@@ -33,3 +33,9 @@ export function isMobileViewport(): boolean {
 export function shouldSimplifyMotion(): boolean {
   return prefersReducedMotion() || isSmartTV();
 }
+
+/** Touch-first input with no hover state — phones, tablets, TV remotes. */
+export function isCoarsePointer(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(hover: none), (pointer: coarse)").matches;
+}

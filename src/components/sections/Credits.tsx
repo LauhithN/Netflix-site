@@ -13,16 +13,16 @@ export default function Credits() {
   const handleSecretNavigation = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsTransitioning(true);
-    
+
     // Wait for the curtain to drop, then route
     setTimeout(() => {
       router.push("/for-you");
-    }, 800); 
+    }, 800);
   };
 
   return (
     <>
-      <section className="border-t border-white/5 bg-black px-8 py-24">
+      <section className="border-t border-white/5 bg-black px-6 py-24 sm:px-8">
         <div className="mx-auto max-w-lg text-center">
           {/* ── Title Block ─────────────────────────────────────────── */}
           <motion.div
@@ -32,10 +32,10 @@ export default function Credits() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="font-display text-sm uppercase tracking-[0.4em] text-white/30">
+            <h2 className="font-display text-sm uppercase tracking-[0.4em] text-white/50">
               {CREDITS.title}
             </h2>
-            <p className="mt-1 font-body text-xs text-white/20">{CREDITS.year}</p>
+            <p className="mt-1 font-body text-xs text-white/40">{CREDITS.year}</p>
           </motion.div>
 
           {/* ── Rolling Credits List ─────────────────────────────────── */}
@@ -48,10 +48,10 @@ export default function Credits() {
           >
             {CREDITS.roles.map((credit, i) => (
               <motion.div key={i} variants={staggerItem} className="flex flex-col">
-                <span className="font-body text-[11px] uppercase tracking-[0.2em] text-white/30">
+                <span className="font-body text-[11px] uppercase tracking-[0.2em] text-white/50">
                   {credit.role}
                 </span>
-                <span className="font-serif text-base italic text-white/70">
+                <span className="font-serif text-base italic text-white/80">
                   {credit.name}
                 </span>
               </motion.div>
@@ -67,7 +67,7 @@ export default function Credits() {
             transition={{ delay: 0.8, duration: 1 }}
             className="mt-16 border-t border-white/10 pt-12"
           >
-            <p className="whitespace-pre-line font-serif text-base italic leading-relaxed text-white/50">
+            <p className="whitespace-pre-line font-serif text-base italic leading-relaxed text-white/65">
               {CREDITS.finalMessage}
             </p>
             <button

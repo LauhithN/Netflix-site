@@ -3,8 +3,9 @@ import { Bebas_Neue, Inter, Playfair_Display } from "next/font/google";
 import "@/styles/globals.css";
 import { SITE_CONFIG } from "@/data/content";
 import EasterEggs from "@/components/ui/EasterEggs";
+import MotionProvider from "@/components/providers/MotionProvider";
 
-// ─── Fonts ──────────────────────────────────────────────────────────────────
+// ─── Fonts (self-hosted by next/font — no external font requests) ───────────
 const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -73,18 +74,11 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${inter.variable} ${playfairDisplay.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-      </head>
       <body className="bg-netflix-dark text-white antialiased overflow-x-hidden overscroll-none">
-        <EasterEggs />
-        {children}
+        <MotionProvider>
+          <EasterEggs />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

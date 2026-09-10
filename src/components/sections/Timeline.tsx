@@ -12,6 +12,7 @@ import {
   fadeInUp,
 } from "@/lib/animations";
 import { cn } from "@/lib/utils";
+import { shouldSimplifyMotion } from "@/lib/device";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 export default function Timeline() {
@@ -20,6 +21,13 @@ export default function Timeline() {
 
   useGSAP(
     () => {
+      if (!lineRef.current) return;
+
+      if (shouldSimplifyMotion()) {
+        gsap.set(lineRef.current, { scaleY: 1, transformOrigin: "top" });
+        return;
+      }
+
       gsap.registerPlugin(ScrollTrigger);
       gsap.fromTo(
         lineRef.current,
@@ -36,6 +44,7 @@ export default function Timeline() {
           },
         }
       );
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     },
     { scope: sectionRef }
   );
@@ -44,7 +53,7 @@ export default function Timeline() {
     <section
       ref={sectionRef}
       id="timeline"
-      className="relative bg-black/40 px-8 py-24 md:px-16"
+      className="relative bg-black/40 px-6 py-24 sm:px-8 md:px-16"
     >
       {/* ── Section Title ────────────────────────────────────────── */}
       <motion.div
@@ -66,9 +75,10 @@ export default function Timeline() {
       {/* ── Timeline Container ───────────────────────────────────── */}
       <div className="relative mx-auto max-w-3xl">
         {/* Vertical Line */}
-        <div 
+        <div
           ref={lineRef}
-          className="absolute bottom-0 left-6 top-0 w-px bg-gradient-to-b from-netflix-red via-rose-glow to-transparent md:left-[27px]" 
+          className="absolute bottom-0 left-6 top-0 w-px bg-gradient-to-b from-netflix-red via-rose-glow to-transparent md:left-[27px]"
+          aria-hidden="true"
         />
 
         {/* Timeline Events */}
@@ -104,7 +114,7 @@ export default function Timeline() {
                 <h3 className="mb-2 font-display text-xl tracking-wide text-white md:text-2xl">
                   {event.title} {event.emoji}
                 </h3>
-                <p className="font-body text-sm leading-relaxed text-white/60">
+                <p className="font-body text-sm leading-relaxed text-white/70">
                   {event.description}
                 </p>
               </div>

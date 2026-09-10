@@ -3,12 +3,22 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { LOVE_STATS } from "@/data/content";
-import { staggerContainer, statCardVariants } from "@/lib/animations";
+import { staggerContainer, statCardVariants, fadeIn } from "@/lib/animations";
 import { useLiveStats } from "@/hooks";
 
 export default function LoveStats() {
   return (
-    <section className="bg-netflix-dark px-8 py-20 md:px-16">
+    <section className="bg-netflix-dark px-6 py-20 sm:px-8 md:px-16">
+      <motion.p
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mb-8 text-center text-xs font-medium uppercase tracking-[0.3em] text-netflix-red"
+      >
+        By the numbers
+      </motion.p>
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -16,8 +26,8 @@ export default function LoveStats() {
         viewport={{ once: true, margin: "-80px" }}
         className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6"
       >
-        {LOVE_STATS.map((stat, i) => (
-          <StatCard key={stat.label} stat={stat} delay={i * 0.1} />
+        {LOVE_STATS.map((stat) => (
+          <StatCard key={stat.label} stat={stat} />
         ))}
       </motion.div>
     </section>
@@ -26,20 +36,19 @@ export default function LoveStats() {
 
 // ─── Subcomponent ───────────────────────────────────────────────────────────
 
-function StatCard({
-  stat,
-  delay,
-}: {
-  stat: (typeof LOVE_STATS)[0];
-  delay: number;
-}) {
+function StatCard({ stat }: { stat: (typeof LOVE_STATS)[number] }) {
   const ref = useRef<HTMLDivElement>(null);
   const done = useRef(false);
   const [count, setCount] = useState(0);
   const { daysTogether, hasMounted } = useLiveStats();
-  
+
   // Resolve the target value depending on if it's the live stat
-  const targetValue = stat.label === "Days Together" && hasMounted ? daysTogether : (typeof stat.value === "number" ? stat.value : 0);
+  const targetValue =
+    stat.label === "Days Together" && hasMounted
+      ? daysTogether
+      : typeof stat.value === "number"
+        ? stat.value
+        : 0;
 
   useEffect(() => {
     const el = ref.current;
@@ -74,7 +83,7 @@ function StatCard({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [stat.value, targetValue]);
+  }, [targetValue]);
 
   return (
     <motion.div
@@ -89,7 +98,7 @@ function StatCard({
         {count}
         {stat.suffix}
       </span>
-      <span className="mt-2 font-body text-[10px] leading-tight tracking-widest text-white/40 uppercase">
+      <span className="mt-2 font-body text-[11px] uppercase leading-tight tracking-widest text-white/60">
         {stat.label}
       </span>
     </motion.div>

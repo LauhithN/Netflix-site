@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { Play } from "lucide-react";
 import { HERO, SITE_CONFIG } from "@/data/content";
 import {
   heroContainerVariants,
@@ -14,6 +16,8 @@ import {
 } from "@/lib/animations";
 import { useLiveStats } from "@/hooks";
 import { shouldSimplifyMotion } from "@/lib/device";
+
+const COLLAGE_TILTS = ["-rotate-1", "rotate-[0.5deg]", "rotate-1"];
 
 export default function HeroBanner() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -49,40 +53,45 @@ export default function HeroBanner() {
       id="hero"
       className="relative flex h-screen-safe w-full items-end overflow-hidden bg-netflix-dark"
     >
-      {/* ── Background: 3 side-by-side on top, main photo on bottom ─ */}
+      {/* ── Background: 3 polaroids on top, main photo on bottom ──── */}
       <div ref={bgRef} className="absolute inset-0 bg-netflix-dark will-change-transform">
-        {/* Top row — three photos side by side */}
-        <div className="absolute inset-x-0 top-0 z-[1] flex h-[26%] items-stretch gap-1.5 px-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:h-[30%] sm:gap-2 sm:px-3 md:h-[38%] md:gap-3 md:px-6 md:pt-5 lg:h-[42%]">
-          {HERO.collage.map((src, i) => {
-            const tilts = ["-rotate-1", "rotate-[0.5deg]", "rotate-1"];
-            return (
-              <div
-                key={src}
-                className={`relative min-w-0 flex-1 overflow-hidden rounded-sm bg-white p-0.5 shadow-[0_10px_30px_rgba(0,0,0,0.45)] sm:p-1 md:p-1.5 ${tilts[i]}`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+        {/* Top row — starts below the navbar so links never sit on a photo */}
+        <div className="absolute inset-x-0 top-[var(--nav-height)] z-[1] flex h-[24%] items-stretch gap-1.5 px-2 sm:h-[28%] sm:gap-2 sm:px-3 md:h-[34%] md:gap-3 md:px-6 lg:h-[38%]">
+          {HERO.collage.map((src, i) => (
+            <div
+              key={src}
+              className={`relative min-w-0 flex-1 rounded-sm bg-white p-0.5 shadow-[0_10px_30px_rgba(0,0,0,0.45)] sm:p-1 md:p-1.5 ${COLLAGE_TILTS[i % COLLAGE_TILTS.length]}`}
+            >
+              <div className="relative h-full w-full overflow-hidden">
+                <Image
                   src={src}
                   alt=""
-                  className="h-full w-full object-cover"
-                  loading={i === 0 ? "eager" : "lazy"}
-                  decoding="async"
+                  fill
+                  sizes="33vw"
+                  priority={i === 0}
+                  className="object-cover"
                 />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* Bottom — main hero photo */}
-        <div
-          className="absolute inset-x-0 bottom-0 z-0 h-[78%] bg-cover bg-[center_20%] sm:h-[74%] md:h-[66%] md:bg-[center_30%] lg:h-[62%]"
-          style={{ backgroundImage: `url(${HERO.backgroundImageDesktop})` }}
-        />
+        {/* Bottom — main hero photo (optimised + preloaded: it's the LCP element) */}
+        <div className="absolute inset-x-0 bottom-0 z-0 h-[78%] sm:h-[74%] md:h-[66%] lg:h-[62%]">
+          <Image
+            src={HERO.backgroundImageDesktop}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_20%] md:object-[center_30%]"
+          />
+        </div>
       </div>
 
       {/* ── Gradient Overlays ────────────────────────────────────── */}
       <div className="absolute inset-0 z-[2] bg-gradient-to-r from-netflix-dark/95 via-netflix-dark/55 to-transparent md:via-netflix-dark/40" />
-      <div className="absolute inset-x-0 top-0 z-[2] h-20 bg-gradient-to-b from-netflix-dark/60 to-transparent md:h-24" />
+      <div className="absolute inset-x-0 top-0 z-[2] h-24 bg-gradient-to-b from-netflix-dark/70 to-transparent md:h-28" />
       <div className="absolute bottom-0 z-[2] h-56 w-full bg-gradient-to-t from-netflix-dark via-netflix-dark/90 to-transparent md:h-48" />
 
       {/* ── Content ──────────────────────────────────────────────── */}
@@ -92,9 +101,9 @@ export default function HeroBanner() {
         animate="visible"
         className="relative z-10 w-full max-w-2xl px-5 pb-[max(5rem,calc(1.5rem+env(safe-area-inset-bottom)))] pt-24 sm:px-8 sm:pb-24 md:px-16 md:pb-28"
       >
-        <motion.div variants={fadeIn} className="mb-3 sm:mb-6">
-          <p className="font-display text-xl tracking-[0.2em] text-netflix-red sm:text-2xl md:text-3xl">
-            {SITE_CONFIG.herName.toUpperCase()}
+        <motion.div variants={fadeIn} className="mb-3 sm:mb-5">
+          <p className="font-body text-[11px] font-medium uppercase tracking-[0.4em] text-netflix-red sm:text-xs">
+            A Birthday Original
           </p>
         </motion.div>
 
@@ -112,7 +121,7 @@ export default function HeroBanner() {
 
         <motion.p
           variants={fadeInUp}
-          className="mb-6 max-w-lg font-body text-sm font-light leading-relaxed text-white/80 sm:mb-8 sm:text-base md:text-lg"
+          className="mb-6 max-w-lg font-body text-sm font-light leading-relaxed text-white/85 sm:mb-8 sm:text-base md:text-lg"
         >
           {HERO.description}
         </motion.p>
@@ -125,7 +134,7 @@ export default function HeroBanner() {
             href={HERO.ctaPrimary.anchor}
             className="tap-target flex items-center justify-center gap-2 rounded bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-6"
           >
-            <span aria-hidden>▶</span>
+            <Play size={16} fill="currentColor" aria-hidden="true" />
             {HERO.ctaPrimary.label}
           </a>
           <a
@@ -149,7 +158,7 @@ export default function HeroBanner() {
                     : "..."
                   : stat.value}
               </span>
-              <span className="font-body text-[10px] uppercase tracking-widest text-white/50 sm:text-xs">
+              <span className="font-body text-[10px] uppercase tracking-widest text-white/60 sm:text-xs">
                 {stat.label}
               </span>
             </div>
@@ -161,8 +170,9 @@ export default function HeroBanner() {
         animate={simplify ? undefined : { y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex"
+        aria-hidden="true"
       >
-        <span className="text-xs uppercase tracking-widest text-white/30">
+        <span className="text-xs uppercase tracking-widest text-white/40">
           Scroll
         </span>
         <div className="h-8 w-[1px] bg-gradient-to-b from-white/40 to-transparent" />

@@ -1,9 +1,4 @@
 /* ==========================================================================
-   Google Fonts
-   ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-/* ==========================================================================
    Tailwind Directives
    ========================================================================== */
 @tailwind base;
@@ -12,17 +7,22 @@
 
 /* ==========================================================================
    CSS Custom Properties
+   Font variables (--font-bebas / --font-inter / --font-playfair) are set on
+   <html> by next/font in app/layout.tsx — no Google Fonts @import needed.
    ========================================================================== */
 :root {
-  --font-bebas: "Bebas Neue", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-playfair: "Playfair Display", serif;
-
   --netflix-red: #e50914;
   --netflix-dark: #141414;
   --rose-glow: #e91e8c;
   --gold-warm: #f5c518;
   --surface: #1a1a1a;
+  --nav-height: calc(56px + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-height: calc(68px + env(safe-area-inset-top, 0px));
+  }
 }
 
 /* ==========================================================================
@@ -46,7 +46,7 @@
   body {
     background-color: #141414;
     color: #ffffff;
-    font-family: var(--font-inter);
+    font-family: var(--font-inter), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -54,7 +54,7 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Eliminate 300ms tap delay on mobile */
+  /* Eliminate tap delay on mobile */
   a,
   button,
   input,
@@ -72,6 +72,16 @@
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  ::selection {
+    background: rgba(229, 9, 20, 0.5);
+    color: #ffffff;
+  }
+
+  /* In-page anchors (#memories, #letter …) land just below the fixed navbar */
+  section[id] {
+    scroll-margin-top: var(--nav-height);
   }
 }
 
@@ -135,23 +145,32 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Film-grain texture as an inline SVG — no image request needed */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
 }
 
 /* ==========================================================================
    Scroll Row (Netflix-style horizontal scroll)
+   Vertical padding (with a negative top margin to keep the rhythm) gives the
+   hovered card room to lift and scale without being clipped by overflow.
    ========================================================================== */
 .scroll-row {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   gap: 0.75rem;
-  padding-bottom: 1rem;
-  padding-left: max(1.25rem, env(safe-area-inset-left));
-  padding-right: max(1.25rem, env(safe-area-inset-right));
+  padding: 1rem max(1.25rem, env(safe-area-inset-right)) 1.5rem
+    max(1.25rem, env(safe-area-inset-left));
+  margin-top: -1rem;
+  scroll-padding-inline: 1.25rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-padding-inline: 1.25rem;
 }
 .scroll-row::-webkit-scrollbar {
   display: none;
@@ -166,6 +185,7 @@
     gap: 1rem;
     padding-left: 3rem;
     padding-right: 3rem;
+    scroll-padding-inline: 3rem;
   }
 }
 
@@ -196,24 +216,8 @@
 }
 
 /* ==========================================================================
-   Video Controls Overlay
-   ========================================================================== */
-.video-controls {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.video-wrapper:hover .video-controls {
-  opacity: 1;
-}
-
-/* ==========================================================================
-   Accessibility — Reduced Motion
+   Accessibility — Reduced Motion (JS-driven motion is handled by
+   MotionConfig + shouldSimplifyMotion(); this covers CSS animations)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -230,10 +234,6 @@
    Phone (iPhone 15 Pro Max and similar)
    ========================================================================== */
 @media (max-width: 767px) {
-  .memory-card {
-    width: 16.5rem;
-  }
-
   a,
   button,
   [role="button"] {
@@ -275,12 +275,5 @@
 @media (min-width: 1920px) {
   .memory-card {
     width: 24rem;
-  }
-}
-
-/* Always-visible video controls on coarse pointers (phones + TVs) */
-@media (hover: none), (pointer: coarse) {
-  .group\/video .video-controls-bar {
-    opacity: 1 !important;
   }
 }

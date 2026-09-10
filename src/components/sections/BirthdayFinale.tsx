@@ -4,7 +4,10 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/data/content";
 import { isBirthday } from "@/lib/utils";
+import { prefersReducedMotion } from "@/lib/device";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+
+const CONFETTI_COLORS = ["#E50914", "#E91E8C", "#F5C518", "#ffffff"];
 
 export default function BirthdayFinale() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,7 +17,7 @@ export default function BirthdayFinale() {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    if (!el || prefersReducedMotion()) return;
 
     const observer = new IntersectionObserver(
       async ([entry]) => {
@@ -33,14 +36,14 @@ export default function BirthdayFinale() {
               angle: 60,
               spread: 55,
               origin: { x: 0 },
-              colors: ["#E50914", "#E91E8C", "#F5C518", "#ffffff"],
+              colors: CONFETTI_COLORS,
             });
             confetti({
               particleCount: 5,
               angle: 120,
               spread: 55,
               origin: { x: 1 },
-              colors: ["#E50914", "#E91E8C", "#F5C518", "#ffffff"],
+              colors: CONFETTI_COLORS,
             });
 
             if (Date.now() < end) {
@@ -63,7 +66,7 @@ export default function BirthdayFinale() {
     <section
       ref={sectionRef}
       id="finale"
-      className="relative overflow-hidden bg-black px-8 py-40 text-center"
+      className="relative overflow-hidden bg-black px-6 py-40 text-center sm:px-8"
     >
       {/* ── Background Red Glow ──────────────────────────────────── */}
       <div
@@ -83,7 +86,7 @@ export default function BirthdayFinale() {
         className="relative z-10 mx-auto max-w-4xl"
       >
         {/* Cake Emoji */}
-        <motion.span variants={staggerItem} className="mb-6 block text-7xl md:text-9xl">
+        <motion.span variants={staggerItem} className="mb-6 block text-7xl md:text-9xl" aria-hidden="true">
           🎂
         </motion.span>
 
@@ -113,14 +116,14 @@ export default function BirthdayFinale() {
         {/* Romantic Under-text */}
         <motion.p
           variants={staggerItem}
-          className="mx-auto max-w-lg font-serif text-lg italic leading-relaxed text-white/60"
+          className="mx-auto max-w-lg font-serif text-lg italic leading-relaxed text-white/70"
         >
           &quot;No matter what day the calendar says, my favorite day is any day spent
           with you. I love you.&quot;
         </motion.p>
 
         {/* Bouncing Emojis Row */}
-        <motion.div variants={staggerItem} className="mt-12 flex justify-center gap-4 text-2xl">
+        <motion.div variants={staggerItem} className="mt-12 flex justify-center gap-4 text-2xl" aria-hidden="true">
           {emojis.map((emoji, i) => (
             <motion.span
               key={i}

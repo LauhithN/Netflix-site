@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/data/content";
+import { useCoarsePointer } from "@/hooks";
 
 interface IntroScreenProps {
   onComplete: () => void;
@@ -10,6 +11,7 @@ interface IntroScreenProps {
 
 export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const [isZooming, setIsZooming] = useState(false);
+  const coarse = useCoarsePointer();
 
   const handleClick = () => {
     if (isZooming) return;
@@ -38,7 +40,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") handleClick();
       }}
-      aria-label="Click to enter"
+      aria-label="Enter"
     >
       <motion.div
         animate={
@@ -57,7 +59,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
         <h1 className="font-display text-5xl tracking-[0.12em] text-white drop-shadow-[0_0_24px_rgba(229,9,20,0.55)] md:text-7xl lg:text-8xl">
           {SITE_CONFIG.herName.toUpperCase()}
         </h1>
-        <p className="font-serif text-sm italic text-white/50 md:text-base">
+        <p className="font-serif text-sm italic text-white/65 md:text-base">
           {SITE_CONFIG.heroTagline}
         </p>
       </motion.div>
@@ -67,9 +69,9 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-[max(4rem,calc(3rem+env(safe-area-inset-bottom)))] text-center font-body text-xs uppercase tracking-widest text-white/40 md:text-sm"
+          className="absolute bottom-[max(4rem,calc(3rem+env(safe-area-inset-bottom)))] text-center font-body text-xs uppercase tracking-widest text-white/60 md:text-sm"
         >
-          Click to enter
+          {coarse ? "Tap to enter" : "Click to enter"}
         </motion.p>
       )}
     </motion.div>

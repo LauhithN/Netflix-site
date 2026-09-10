@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center bg-netflix-dark text-center px-4">
+    <div className="flex min-h-dvh w-full flex-col items-center justify-center bg-netflix-dark px-4 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,10 +17,10 @@ export default function NotFound() {
         <h2 className="mt-4 font-display text-2xl tracking-widest text-white md:text-3xl">
           LOST YOUR WAY?
         </h2>
-        <p className="mt-4 max-w-md font-body text-white/60">
+        <p className="mt-4 max-w-md font-body text-white/70">
           Sorry, we couldn&apos;t find that page. You&apos;ll find lots to explore on the home page.
         </p>
-        
+
         <Link
           href="/"
           className="mx-auto mt-10 flex w-fit items-center gap-2 rounded bg-white px-8 py-3 font-semibold text-black transition-transform hover:scale-105"
